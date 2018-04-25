@@ -10,7 +10,7 @@ namespace Dotlib.Parser
 
         public List<string> Roles { get; set; } = new List<string>();
 
-        protected Regex Regex = new Regex(@"^[A-Za-z].*:[A-Za-z].*$");
+        protected Regex Regex = new Regex(@"^[A-Za-z\s].*:[A-Za-z\s].*$");
     }
 
     public partial class RoleParser : IParsable<List<string>>
@@ -23,7 +23,7 @@ namespace Dotlib.Parser
             }
 
             var splitted = roles.Split(':');
-            ApplicationName = splitted[0];
+            ApplicationName = splitted[0].Trim();
             ParseRoles(splitted[1]);
         }
 
@@ -34,7 +34,7 @@ namespace Dotlib.Parser
             {
                 if (!string.IsNullOrEmpty(role))
                 {
-                    Roles.Add(role);
+                    Roles.Add(role.Trim());
                 }
             }
         }

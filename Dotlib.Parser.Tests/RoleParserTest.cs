@@ -75,5 +75,75 @@ namespace Dotlib.Parser.Tests
             Assert.AreEqual("ApplicationName", parser.ApplicationName);
             Assert.AreEqual("Role1", parser.Roles[0]);
         }
+
+        [TestMethod]
+        public void ParseValid6()
+        {
+            var parser = new RoleParser(" ApplicationName:Role1, Role2,Role3");
+
+            Assert.IsTrue(parser.IsParsed());
+            Assert.AreEqual(3, parser.Roles.Count);
+
+            Assert.AreEqual("ApplicationName", parser.ApplicationName);
+            Assert.AreEqual("Role1", parser.Roles[0]);
+            Assert.AreEqual("Role2", parser.Roles[1]);
+            Assert.AreEqual("Role3", parser.Roles[2]);
+        }
+
+        [TestMethod]
+        public void ParseValid7()
+        {
+            var parser = new RoleParser(" ApplicationName: Role1,Role2,Role3");
+
+            Assert.IsTrue(parser.IsParsed());
+            Assert.AreEqual(3, parser.Roles.Count);
+
+            Assert.AreEqual("ApplicationName", parser.ApplicationName);
+            Assert.AreEqual("Role1", parser.Roles[0]);
+            Assert.AreEqual("Role2", parser.Roles[1]);
+            Assert.AreEqual("Role3", parser.Roles[2]);
+        }
+
+        [TestMethod]
+        public void ParseValid8()
+        {
+            var parser = new RoleParser(" ApplicationName: Role1,Role2,Role3 ");
+
+            Assert.IsTrue(parser.IsParsed());
+            Assert.AreEqual(3, parser.Roles.Count);
+
+            Assert.AreEqual("ApplicationName", parser.ApplicationName);
+            Assert.AreEqual("Role1", parser.Roles[0]);
+            Assert.AreEqual("Role2", parser.Roles[1]);
+            Assert.AreEqual("Role3", parser.Roles[2]);
+        }
+
+        [TestMethod]
+        public void ParseValid9()
+        {
+            var parser = new RoleParser("ApplicationName: Role1 , Role2 , Role3 ");
+
+            Assert.IsTrue(parser.IsParsed());
+            Assert.AreEqual(3, parser.Roles.Count);
+
+            Assert.AreEqual("ApplicationName", parser.ApplicationName);
+            Assert.AreEqual("Role1", parser.Roles[0]);
+            Assert.AreEqual("Role2", parser.Roles[1]);
+            Assert.AreEqual("Role3", parser.Roles[2]);
+        }
+
+        [TestMethod]
+        public void ParseValid10()
+        {
+            var parser = new RoleParser(" ApplicationName : Role1 , Role2 , Role3 ");
+
+            Assert.IsTrue(parser.IsParsed());
+            Assert.AreEqual(3, parser.Roles.Count);
+
+            Assert.AreEqual("ApplicationName", parser.ApplicationName);
+            Assert.AreEqual("Role1", parser.Roles[0]);
+            Assert.AreEqual("Role2", parser.Roles[1]);
+            Assert.AreEqual("Role3", parser.Roles[2]);
+        }
     }
 }
